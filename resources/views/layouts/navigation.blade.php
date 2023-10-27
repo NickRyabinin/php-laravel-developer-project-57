@@ -3,12 +3,14 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
             <div class="flex">
-
-                <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <div class="shrink-0 flex mr-20">
                     <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
                         {{ __('Менеджер задач') }}
                     </x-nav-link>
+                </div>
+
+                <!-- Navigation Links -->
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
                         {{ __('Задачи') }}
                     </x-nav-link>
@@ -18,11 +20,22 @@
                     <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
                         {{ __('Метки') }}
                     </x-nav-link>
+                    @guest
+                        <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
+                            {{ __('Вход') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
+                            {{ __('Регистрация') }}
+                        </x-nav-link>
+                    @endguest
+                    @auth
+                        {{ __('Выход') }}
+                    @endauth
                 </div>
             </div>
 
             <!-- Settings Dropdown -->
-            <div class="hidden sm:flex sm:items-center sm:ml-6">
+            <div class="hidden sm:flex sm:items-center sm:ml-10">
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button
@@ -32,7 +45,7 @@
                                     {{ Auth::user()->name }}
                                 @endauth
                                 @guest
-                                {{ __('navigation.Guest') }}
+                                    {{ __('Гость') }}
                                 @endguest
                             </div>
 
@@ -50,7 +63,7 @@
                     <x-slot name="content">
                         @auth
                             <x-dropdown-link :href="route('profile.edit')">
-                                {{ __('navigation.Profile') }}
+                                {{ __('Профиль') }}
                             </x-dropdown-link>
 
                             <!-- Authentication -->
@@ -60,16 +73,16 @@
                                 <x-dropdown-link :href="route('logout')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                    {{ __('navigation.Log Out') }}
+                                    {{ __('Выход') }}
                                 </x-dropdown-link>
                             </form>
                         @endauth
                         @guest
                             <x-dropdown-link :href="route('login')">
-                                {{ __('navigation.Log In') }}
+                                {{ __('Вход') }}
                             </x-dropdown-link>
                             <x-dropdown-link :href="route('register')">
-                                {{ __('navigation.Register') }}
+                                {{ __('Регистрация') }}
                             </x-dropdown-link>
                         @endguest
                     </x-slot>
@@ -96,10 +109,13 @@
     <div :class="{ 'block': open, 'hidden': !open }" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('home')" :active="request()->routeIs('home')">
-                {{ __('navigation.About') }}
+                {{ __('Задачи') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('home')" :active="request()->routeIs('home')">
-                {{ __('navigation.Articles') }}
+                {{ __('Статусы') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('home')" :active="request()->routeIs('home')">
+                {{ __('Метки') }}
             </x-responsive-nav-link>
         </div>
 
@@ -116,7 +132,7 @@
                 @endauth
                 @guest
                     <div class="font-medium text-base text-blue-800">
-                        {{ __('navigation.Guest') }}
+                        {{ __('Гость') }}
                     </div>
                 @endguest
             </div>
@@ -124,7 +140,7 @@
             <div class="mt-3 space-y-1">
                 @auth
                     <x-responsive-nav-link :href="route('profile.edit')">
-                        {{ __('navigation.Profile') }}
+                        {{ __('Профиль') }}
                     </x-responsive-nav-link>
 
                     <!-- Authentication -->
@@ -134,16 +150,16 @@
                         <x-responsive-nav-link :href="route('logout')"
                             onclick="event.preventDefault();
                                         this.closest('form').submit();">
-                            {{ __('navigation.Log Out') }}
+                            {{ __('Выход') }}
                         </x-responsive-nav-link>
                     </form>
                 @endauth
                 @guest
                     <x-responsive-nav-link :href="route('login')">
-                        {{ __('navigation.Log In') }}
+                        {{ __('Вход') }}
                     </x-responsive-nav-link>
                     <x-responsive-nav-link :href="route('register')">
-                        {{ __('navigation.Register') }}
+                        {{ __('Регистрация') }}
                     </x-responsive-nav-link>
                 @endguest
             </div>
