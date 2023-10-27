@@ -5,11 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
-
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+        <title>Менеджер задач</title>
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -29,7 +25,20 @@
 
             <!-- Page Content -->
             <main>
-                {{ $slot }}
+                <div class="container mx-auto">
+                    @if (session()->has('message'))
+                        <div class="bg-green-500">
+                            {{ session('message') }}
+                        </div>
+                    @endif
+                    <h1 class="text-6xl mt-4">@yield('header')</h1>
+                    <div>
+                        @yield('content')
+                    </div>
+                </div>
+                @if (isset($slot))
+                    {{ $slot }}
+                @endif
             </main>
         </div>
     </body>
