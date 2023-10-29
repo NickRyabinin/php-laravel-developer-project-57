@@ -2,7 +2,6 @@
 
 @section('header', 'Привет от Хекслета!')
 
-<!-- Секция, содержащая HTML блок. Имеет открывающую и закрывающую часть. -->
 @section('content')
     <p class="my-4">Это простой менеджер задач на Laravel</p>
     <a href="https://github.com/NickRyabinin" target="__blank"
