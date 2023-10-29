@@ -5,6 +5,11 @@
     <form method="POST" action="{{ route('login') }}">
         @csrf
 
+        @if ($errors->any())
+            <div class="text-red-500 mb-2">
+                Упс! Что-то пошло не так:
+            </div>
+        @endif
         <!-- Email Address -->
         <div>
             <x-input-label for="email" :value="__('Email')" />
