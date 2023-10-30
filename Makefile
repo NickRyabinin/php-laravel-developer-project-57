@@ -14,6 +14,8 @@ check:
 	php artisan test
 start:
 	php artisan serve --host 0.0.0.0
+seed:
+	php artisan db:seed
 validate:
 	composer validate
 lint:
