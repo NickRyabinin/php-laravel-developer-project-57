@@ -27,7 +27,7 @@
             <main>
                 <div class="container mx-auto">
                     @if (session()->has('message'))
-                        <div class="bg-green-500">
+                        <div class="w-fit mx-auto mt-2 bg-green-500">
                             {{ session('message') }}
                         </div>
                     @endif
