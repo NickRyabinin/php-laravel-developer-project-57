@@ -21,7 +21,8 @@ class TaskStatusController extends Controller
      */
     public function create()
     {
-        //
+        $taskStatus = new TaskStatus();
+        return view('task_statuses.create', ['taskStatus' => $taskStatus]);
     }
 
     /**
@@ -29,7 +30,7 @@ class TaskStatusController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return redirect()->route('task_statuses.index');
     }
 
     /**
@@ -61,6 +62,10 @@ class TaskStatusController extends Controller
      */
     public function destroy(TaskStatus $taskStatus)
     {
-        //
+        $taskStatus->delete();
+        session()->flash('message', 'Статус успешно удалён');
+        // session()->flash('message', 'Не удалось удалить статус');
+
+        return redirect()->route('task_statuses.index');
     }
 }
