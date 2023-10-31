@@ -21,8 +21,11 @@ class TaskStatusController extends Controller
      */
     public function create()
     {
-        $taskStatus = new TaskStatus();
-        return view('task_statuses.create', ['taskStatus' => $taskStatus]);
+        if (auth()->check()) {
+            $taskStatus = new TaskStatus();
+            return view('task_statuses.create', ['taskStatus' => $taskStatus]);
+        }
+        abort(403, 'This action is unauthorized.');
     }
 
     /**
@@ -30,6 +33,13 @@ class TaskStatusController extends Controller
      */
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'name' => 'required|unique:task_statuses|string|max:255',
+        ]);
+
+        $taskStatus = new TaskStatus();
+        $taskStatus->fill($validated)->save();
+        session()->flash('message', 'Статус успешно создан');
         return redirect()->route('task_statuses.index');
     }
 
@@ -46,7 +56,10 @@ class TaskStatusController extends Controller
      */
     public function edit(TaskStatus $taskStatus)
     {
-        //
+        if (auth()->check()) {
+            return view('task_statuses.edit', ['taskStatus' => $taskStatus]);
+        }
+        abort(403, 'This action is unauthorized.');
     }
 
     /**
@@ -54,7 +67,16 @@ class TaskStatusController extends Controller
      */
     public function update(Request $request, TaskStatus $taskStatus)
     {
-        //
+        /* $validated = $request->validate([
+            'name' => 'required|string|max:255|unique:task_statuses,name,' . $taskStatus->id,
+        ]); */
+        $validated = $request->validate([
+            'name' => 'required|string|max:255|unique:task_statuses',
+        ]);
+
+        $taskStatus->fill($validated)->save();
+        session()->flash('message', 'Статус успешно изменён');
+        return redirect()->route('task_statuses.index');
     }
 
     /**
@@ -62,10 +84,9 @@ class TaskStatusController extends Controller
      */
     public function destroy(TaskStatus $taskStatus)
     {
-        $taskStatus->delete();
-        session()->flash('message', 'Статус успешно удалён');
-        // session()->flash('message', 'Не удалось удалить статус');
-
-        return redirect()->route('task_statuses.index');
+            $taskStatus->delete();
+            session()->flash('message', 'Статус успешно удалён');
+            // session()->flash('message', 'Не удалось удалить статус');
+            return redirect()->route('task_statuses.index');
     }
 }
