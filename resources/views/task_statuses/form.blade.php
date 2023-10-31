@@ -9,4 +9,4 @@
 @endif
 
 {{ Form::label('name', 'Имя', ['class' => 'block mb-2']) }}
-{{ Form::text('name', '', ['class' => 'rounded border-blue-300 w-1/3 mb-2']) }}<br>
+{{ Form::text('name', (isset($taskStatus)) ? $taskStatus->name : '', ['class' => 'rounded border-blue-300 w-1/3 mb-2']) }}<br>
