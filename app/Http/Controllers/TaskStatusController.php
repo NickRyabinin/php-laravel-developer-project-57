@@ -84,9 +84,9 @@ class TaskStatusController extends Controller
      */
     public function destroy(TaskStatus $taskStatus)
     {
-            $taskStatus->delete();
-            session()->flash('message', 'Статус успешно удалён');
-            // session()->flash('message', 'Не удалось удалить статус');
-            return redirect()->route('task_statuses.index');
+        $taskStatus->delete();
+        session()->flash('message', 'Статус успешно удалён');
+        // session()->flash('message', 'Не удалось удалить статус');
+        return redirect()->route('task_statuses.index');
     }
 }
