@@ -12,7 +12,8 @@ class TaskController extends Controller
      */
     public function index()
     {
-        //
+        $tasks = Task::orderBy('id')->simplePaginate(10);
+        return view('tasks.index', ['tasks' => $tasks]);
     }
 
     /**
@@ -20,7 +21,11 @@ class TaskController extends Controller
      */
     public function create()
     {
-        //
+        if (auth()->check()) {
+            $task = new Task();
+            return view('tasks.create', ['task' => $task]);
+        }
+        abort(403, 'This action is unauthorized.');
     }
 
     /**
@@ -44,7 +49,10 @@ class TaskController extends Controller
      */
     public function edit(Task $task)
     {
-        //
+        if (auth()->check()) {
+            return view('tasks.edit', ['task' => $task]);
+        }
+        abort(403, 'This action is unauthorized.');
     }
 
     /**
@@ -60,6 +68,9 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
-        //
+        $taskStatus->delete();
+            session()->flash('message', 'Задача успешно удалена');
+            // session()->flash('message', 'Не удалось удалить задачу');
+            return redirect()->route('tasks.index');
     }
 }
