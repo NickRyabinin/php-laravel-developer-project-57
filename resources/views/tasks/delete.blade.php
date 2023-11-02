@@ -1,4 +1,4 @@
-{{ Form::open(['route' => ['tasks.destroy', $tasks], 'method' => 'DELETE', 'class' => 'inline']) }}
+{{ Form::open(['route' => ['tasks.destroy', $task], 'method' => 'delete', 'class' => 'inline']) }}
 {{ Form::button('Удалить', [
     'type' => 'submit',
     'class' =>
