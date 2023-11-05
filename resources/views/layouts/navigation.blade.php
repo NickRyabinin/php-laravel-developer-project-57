@@ -17,7 +17,7 @@
                     <x-nav-link :href="route('task_statuses.index')" :active="request()->routeIs('task_statuses.index')" class="hover:text-blue-700">
                         {{ __('Статусы') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('home')" :active="request()->routeIs('home')" class="hover:text-blue-700">
+                    <x-nav-link :href="route('labels.index')" :active="request()->routeIs('labels.index')" class="hover:text-blue-700">
                         {{ __('Метки') }}
                     </x-nav-link>
                 </div>
@@ -69,7 +69,7 @@
             <x-responsive-nav-link :href="route('task_statuses.index')" :active="request()->routeIs('task_statuses.index')">
                 {{ __('Статусы') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('home')" :active="request()->routeIs('home')">
+            <x-responsive-nav-link :href="route('labels.index')" :active="request()->routeIs('labels.index')">
                 {{ __('Метки') }}
             </x-responsive-nav-link>
         </div>
