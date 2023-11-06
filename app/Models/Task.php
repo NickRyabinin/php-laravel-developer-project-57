@@ -39,7 +39,7 @@ class Task extends Model
     /**
      * Get all the labels assigned to the task.
      */
-    public function labels(): BelongsToMany
+    public function labels()
     {
         return $this->belongsToMany(Label::class);
     }
