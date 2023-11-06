@@ -16,3 +16,5 @@
 {{ Form::select('status_id', $taskStatuses, null, ['placeholder' => '----------', 'class' => 'rounded border-blue-300 w-1/3 mb-2']) }}<br>
 {{ Form::label('assigned_to_id', 'Исполнитель', ['class' => 'block mb-2']) }}
 {{ Form::select('assigned_to_id', $users, null, ['placeholder' => '----------', 'class' => 'rounded border-blue-300 w-1/3 mb-2']) }}<br>
+{{ Form::label('labels', 'Метки', ['class' => 'block mb-2']) }}
+{{ Form::select('labels[]', $labels, null, ['multiple' => true, 'placeholder' => '', 'class' => 'rounded border-blue-300 w-1/3 mb-2']) }}<br>

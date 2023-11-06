@@ -13,9 +13,13 @@
     <p class="mb-2">Описание: {{ $task->description }}</p>
     <p class="mb-2">Метки:</p>
     <div>
-        @if (isset($labels))
+        <!-- @if (isset($labels))
             @foreach ($labels as $label)
+                <p>{{ dd($label) }}</p>
             @endforeach
-        @endif
+        @endif -->
+        @foreach ($task->labels as $label)
+            <p class="ml-4">{{ $label->name }}</p>
+        @endforeach
     </div>
 @endsection
