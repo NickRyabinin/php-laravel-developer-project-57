@@ -79,8 +79,16 @@ class TaskController extends Controller
         if (auth()->check()) {
             $taskStatuses = TaskStatus::select('id', 'name')->get()->pluck('name', 'id');
             $users = User::select('id', 'name')->get()->pluck('name', 'id');
-            $labels = $task->labels->get()->pluck('name', 'id');
-            return view('tasks.edit', ['task' => $task, 'taskStatuses' => $taskStatuses, 'users' => $users, 'labels' => $labels]);
+            $labels = Label::select('id', 'name')->get()->pluck('name', 'id');
+            return view(
+                'tasks.edit',
+                [
+                    'task' => $task,
+                    'taskStatuses' => $taskStatuses,
+                    'users' => $users,
+                    'labels' => $labels
+                ]
+            );
         }
         abort(403, 'This action is unauthorized.');
     }
@@ -96,10 +104,11 @@ class TaskController extends Controller
             'status_id' => 'required',
             'assigned_to_id' => '',
         ]);
-        $labels[] = $request->input('labels');
+        $labels = $request->input('labels', []);
 
         $task->fill($validated)->save();
-        $task->labels()->sync($labels);
+        $task->labels()->detach();
+        $task->labels()->attach($labels);
         session()->flash('message', 'Задача успешно изменена');
         return redirect()->route('tasks.index');
     }
