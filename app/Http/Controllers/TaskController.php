@@ -16,7 +16,15 @@ class TaskController extends Controller
     public function index()
     {
         $tasks = Task::orderBy('id')->simplePaginate(10);
-        return view('tasks.index', ['tasks' => $tasks]);
+        $taskStatuses = TaskStatus::select('id', 'name')->get()->pluck('name', 'id');
+        $users = User::select('id', 'name')->get()->pluck('name', 'id');
+        return view(
+            'tasks.index',
+            [
+                'tasks' => $tasks,
+                'taskStatuses' => $taskStatuses,
+                'users' => $users,
+            ]);
     }
 
     /**
