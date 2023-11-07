@@ -3,8 +3,9 @@
 @section('header', 'Задачи')
 
 @section('content')
+    @include('tasks.filter')
     <section>
-        <div class="grid max-w-screen-xl px-4 pt-20 pb-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
+        <div class="grid max-w-screen-xl pt-10 pb-10 mx-auto lg:gap-8 xl:gap-0 lg:py-10 lg:grid-cols-12">
             <div class="grid col-span-full">
                 @auth
                     <div>
