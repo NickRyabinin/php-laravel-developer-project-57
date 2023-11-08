@@ -13,18 +13,35 @@ class TaskController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $tasks = Task::orderBy('id')->simplePaginate(10);
+        $task = new Task();
         $taskStatuses = TaskStatus::select('id', 'name')->get()->pluck('name', 'id');
         $users = User::select('id', 'name')->get()->pluck('name', 'id');
+        $filter = $request->filter ?? null;
+        $query = Task::query();
+        if (is_array($filter)) {
+            if ($filter['status_id']) {
+                $query->where('status_id', $filter['status_id']);
+            }
+            if ($filter['created_by_id']) {
+                $query->where('created_by_id', $filter['created_by_id']);
+            }
+            if ($filter['assigned_to_id']) {
+                $query->where('assigned_to_id', $filter['assigned_to_id']);
+            }
+        }
+        $tasks = $query->orderBy('id')->simplePaginate(10);
         return view(
             'tasks.index',
             [
+                'task' => $task,
                 'tasks' => $tasks,
                 'taskStatuses' => $taskStatuses,
                 'users' => $users,
-            ]);
+                'filter' => $filter,
+            ]
+        );
     }
 
     /**
@@ -75,7 +92,6 @@ class TaskController extends Controller
      */
     public function show(Task $task)
     {
-        // $labels = $task->labels->toArray();
         return view('tasks.show', ['task' => $task]);
     }
 
