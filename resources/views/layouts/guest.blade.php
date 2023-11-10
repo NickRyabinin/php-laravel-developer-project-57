@@ -18,7 +18,7 @@
         <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
             <div class="text-4xl">
                 <a href="/">
-                    Менеджер задач
+                    {{ __('guest.app_name') }}
                 </a>
             </div>
 
