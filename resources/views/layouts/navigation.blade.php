@@ -4,37 +4,37 @@
         <div class="flex justify-between h-16">
             <div class="flex">
                 <div class="shrink-0 flex mr-20">
-                    <x-nav-link :href="route('home')" :active="request()->routeIs('home')" class="hover:text-blue-700">
-                        {{ __('Менеджер задач') }}
+                    <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
+                        {{ __('navigation.task_manager') }}
                     </x-nav-link>
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 md:flex">
-                    <x-nav-link :href="route('tasks.index')" :active="request()->routeIs('tasks.index')" class="hover:text-blue-700">
-                        {{ __('Задачи') }}
+                    <x-nav-link :href="route('tasks.index')" :active="request()->routeIs('tasks.index')">
+                        {{ __('navigation.tasks') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('task_statuses.index')" :active="request()->routeIs('task_statuses.index')" class="hover:text-blue-700">
-                        {{ __('Статусы') }}
+                    <x-nav-link :href="route('task_statuses.index')" :active="request()->routeIs('task_statuses.index')">
+                        {{ __('navigation.statuses') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('labels.index')" :active="request()->routeIs('labels.index')" class="hover:text-blue-700">
-                        {{ __('Метки') }}
+                    <x-nav-link :href="route('labels.index')" :active="request()->routeIs('labels.index')">
+                        {{ __('navigation.labels') }}
                     </x-nav-link>
                 </div>
                 <div class="space-x-4 sm:ml-10 absolute top-5 right-14">
                     @guest
                         <a href="{{ route('login') }}"
                             class="align-middle bg-transparent hover:bg-blue-500 text-blue-700 text-base font-semibold py-1 px-2 hover:text-white border border-blue-500 hover:border-transparent rounded">
-                            {{ __('Вход') }}
+                            {{ __('navigation.log_in') }}
                         </a>
                         <a href="{{ route('register') }}"
                             class="align-middle bg-transparent hover:bg-blue-500 text-blue-700 text-base font-semibold py-1 px-2 hover:text-white border border-blue-500 hover:border-transparent rounded">
-                            {{ __('Регистрация') }}
+                            {{ __('navigation.register') }}
                         </a>
                     @endguest
                     @auth
                         {{ Form::open(['route' => 'logout', 'method' => 'post', 'class' => 'inline']) }}
-                        {{ Form::button(__('Выход'), [
+                        {{ Form::button(__('navigation.log_out'), [
                             'type' => 'submit',
                             'class' =>
                                 'align-middle bg-transparent hover:bg-blue-500 text-blue-700 text-base font-semibold py-0.5 px-2 hover:text-white border border-blue-500 hover:border-transparent rounded',
@@ -64,13 +64,13 @@
     <div :class="{ 'block': open, 'hidden': !open }" class="hidden md:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('tasks.index')" :active="request()->routeIs('tasks.index')">
-                {{ __('Задачи') }}
+                {{ __('navigation.tasks') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('task_statuses.index')" :active="request()->routeIs('task_statuses.index')">
-                {{ __('Статусы') }}
+                {{ __('navigation.statuses') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('labels.index')" :active="request()->routeIs('labels.index')">
-                {{ __('Метки') }}
+                {{ __('navigation.labels') }}
             </x-responsive-nav-link>
         </div>
 
@@ -87,7 +87,7 @@
                 @endauth
                 @guest
                     <div class="font-medium text-base text-blue-800">
-                        {{ __('Гость') }}
+                        {{ __('navigation.guest') }}
                     </div>
                 @endguest
             </div>
@@ -95,7 +95,7 @@
             <div class="mt-3 space-y-1">
                 @auth
                     <x-responsive-nav-link :href="route('profile.edit')">
-                        {{ __('Профиль') }}
+                        {{ __('navigation.profile') }}
                     </x-responsive-nav-link>
 
                     <!-- Authentication -->
@@ -105,16 +105,16 @@
                         <x-responsive-nav-link :href="route('logout')"
                             onclick="event.preventDefault();
                                         this.closest('form').submit();">
-                            {{ __('Выход') }}
+                            {{ __('navigation.log_out') }}
                         </x-responsive-nav-link>
                     </form>
                 @endauth
                 @guest
                     <x-responsive-nav-link :href="route('login')">
-                        {{ __('Вход') }}
+                        {{ __('navigation.log_in') }}
                     </x-responsive-nav-link>
                     <x-responsive-nav-link :href="route('register')">
-                        {{ __('Регистрация') }}
+                        {{ __('navigation.register') }}
                     </x-responsive-nav-link>
                 @endguest
             </div>
