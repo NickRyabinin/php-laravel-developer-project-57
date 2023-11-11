@@ -13,6 +13,12 @@ return [
     |
     */
 
+    'reset_message' => 'Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.',
+    'email_reset_link' => 'Email Password Reset Link',
+    'email' => 'Email',
+    'password' => 'Password',
+    'confirm_password' => 'Confirm Password',
+    'reset_password' => 'Reset Password',
     'reset' => 'Your password has been reset.',
     'sent' => 'We have emailed your password reset link.',
     'throttled' => 'Please wait before retrying.',
