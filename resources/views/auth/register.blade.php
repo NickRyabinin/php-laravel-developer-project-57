@@ -49,7 +49,7 @@
                 {{ __('register.already_registered') }}
             </a>
 
-            <x-primary-button class="ml-4">
+            <x-primary-button class="normal-case ml-4">
                 {{ __('register.register') }}
             </x-primary-button>
         </div>

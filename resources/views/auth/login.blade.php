@@ -44,7 +44,7 @@
                 </a>
             @endif
 
-            <x-primary-button class="ml-3">
+            <x-primary-button class="normal-case ml-3">
                 {{ __('login.log_in') }}
             </x-primary-button>
         </div>
