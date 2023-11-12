@@ -50,7 +50,7 @@
             </a>
 
             <x-primary-button class="normal-case ml-4">
-                {{ __('register.register') }}
+                Зарегистрировать
             </x-primary-button>
         </div>
     </form>
