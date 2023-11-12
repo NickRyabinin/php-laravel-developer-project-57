@@ -34,7 +34,7 @@
                     @endguest
                     @auth
                         {{ Form::open(['route' => 'logout', 'method' => 'post', 'class' => 'inline']) }}
-                        {{ Form::button(__('navigation.log_out'), [
+                        {{ Form::button(('Выход'), [
                             'type' => 'submit',
                             'class' =>
                                 'align-middle bg-transparent hover:bg-blue-500 text-blue-700 text-base font-semibold py-0.5 px-2 hover:text-white border border-blue-500 hover:border-transparent rounded',
