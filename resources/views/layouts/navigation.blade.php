@@ -33,13 +33,9 @@
                         </a>
                     @endguest
                     @auth
-                        {{ Form::open(['route' => 'logout', 'method' => 'post', 'class' => 'inline']) }}
-                        {{ Form::button(('Выход'), [
-                            'type' => 'submit',
-                            'class' =>
-                                'align-middle bg-transparent hover:bg-blue-500 text-blue-700 text-base font-semibold py-0.5 px-2 hover:text-white border border-blue-500 hover:border-transparent rounded',
-                        ]) }}
-                        {{ Form::close() }}
+                        <a data-method="post" href="{{ route('logout') }}" class="align-middle bg-transparent hover:bg-blue-500 text-blue-700 text-base font-semibold py-1 px-2 hover:text-white border border-blue-500 hover:border-transparent rounded">
+                            {{ __('Выход') }}
+                        </a>
                     @endauth
                 </div>
             </div>
