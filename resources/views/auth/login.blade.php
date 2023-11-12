@@ -45,7 +45,7 @@
             @endif
 
             <x-primary-button class="normal-case ml-3">
-                {{ __('login.log_in') }}
+                Войти
             </x-primary-button>
         </div>
     </form>

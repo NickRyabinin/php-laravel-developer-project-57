@@ -5,31 +5,31 @@
             <div class="flex">
                 <div class="shrink-0 flex mr-20">
                     <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
-                        {{ __('navigation.task_manager') }}
+                        {{ __('Менеджер задач') }}
                     </x-nav-link>
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 md:flex">
                     <x-nav-link :href="route('tasks.index')" :active="request()->routeIs('tasks.index')">
-                        {{ __('navigation.tasks') }}
+                        {{ __('Задачи') }}
                     </x-nav-link>
                     <x-nav-link :href="route('task_statuses.index')" :active="request()->routeIs('task_statuses.index')">
-                        {{ __('navigation.statuses') }}
+                        {{ __('Статусы') }}
                     </x-nav-link>
                     <x-nav-link :href="route('labels.index')" :active="request()->routeIs('labels.index')">
-                        {{ __('navigation.labels') }}
+                        {{ __('Метки') }}
                     </x-nav-link>
                 </div>
                 <div class="space-x-4 sm:ml-10 absolute top-5 right-14">
                     @guest
                         <a href="{{ route('login') }}"
                             class="align-middle bg-transparent hover:bg-blue-500 text-blue-700 text-base font-semibold py-1 px-2 hover:text-white border border-blue-500 hover:border-transparent rounded">
-                            {{ __('navigation.log_in') }}
+                            {{ __('Вход') }}
                         </a>
                         <a href="{{ route('register') }}"
                             class="align-middle bg-transparent hover:bg-blue-500 text-blue-700 text-base font-semibold py-1 px-2 hover:text-white border border-blue-500 hover:border-transparent rounded">
-                            {{ __('navigation.register') }}
+                            {{ __('Регистрация') }}
                         </a>
                     @endguest
                     @auth
