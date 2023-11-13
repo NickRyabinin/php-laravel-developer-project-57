@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('header', 'Метки')
+@section('header', __('Метки'))
 
 @section('content')
     <section>
@@ -10,19 +10,20 @@
                     <div>
                         <a href="{{ route('labels.create') }}"
                             class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                            Создать метку </a>
+                            {{ __('Создать метку') }}
+                        </a>
                     </div>
                 @endauth
                 <table class="mt-4">
                     <thead class="border-b-2 border-solid border-black text-left">
                         <tr>
-                            <th>ID</th>
-                            <th>Имя</th>
-                            <th>Описание</th>
-                            <th>Дата создания</th>
+                            <th>{{ __('ID') }}</th>
+                            <th>{{ __('Имя') }}</th>
+                            <th>{{ __('Описание') }}</th>
+                            <th>{{ __('Дата создания') }}</th>
                             <th>
                                 @auth
-                                    Действия
+                                {{ __('Действия') }}
                                 @endauth
                             </th>
                         </tr>
@@ -35,10 +36,12 @@
                         <td>{{ $label->created_at->format('d.m.Y')}}</td>
                         <td>
                             @auth
-                                @include('labels.delete')
+                                <a data-method="delete" data-confirm="{{ __('Вы уверены?') }}" href="{{ route('labels.destroy', $label) }}" class="text-red-600 hover:text-red-900">
+                                    {{ __('Удалить') }}
+                                </a>
                                 <a class="text-blue-600 hover:text-blue-900"
                                     href="{{ route('labels.edit', $label) }}">
-                                    Изменить
+                                    {{ __('Изменить') }}
                                 </a>
                             @endauth
                         </td>

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('header', 'Задачи')
+@section('header', __('Задачи'))
 
 @section('content')
     @include('tasks.filter')
@@ -11,21 +11,22 @@
                     <div>
                         <a href="{{ route('tasks.create') }}"
                             class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                            Создать задачу </a>
+                            {{ __('Создать задачу') }}
+                        </a>
                     </div>
                 @endauth
                 <table class="mt-4">
                     <thead class="border-b-2 border-solid border-black text-left">
                         <tr>
-                            <th>ID</th>
-                            <th>Статус</th>
-                            <th>Имя</th>
-                            <th>Автор</th>
-                            <th>Исполнитель</th>
-                            <th>Дата создания</th>
+                            <th>{{ __('ID') }}</th>
+                            <th>{{ __('Статус') }}</th>
+                            <th>{{ __('Имя') }}</th>
+                            <th>{{ __('Автор') }}</th>
+                            <th>{{ __('Исполнитель') }}</th>
+                            <th>{{ __('Дата создания') }}</th>
                             <th>
                                 @auth
-                                    Действия
+                                {{ __('Действия') }}
                                 @endauth
                             </th>
                         </tr>
@@ -45,10 +46,12 @@
                             <td>
                                 @auth
                                     @if (auth()->user()->id === $task->creator->id)
-                                        @include('tasks.delete')
+                                        <a data-method="delete" data-confirm="{{ __('Вы уверены?') }}" href="{{ route('tasks.destroy', $task) }}" class="text-red-600 hover:text-red-900">
+                                            {{ __('Удалить') }}
+                                        </a>
                                     @endif
                                     <a class="text-blue-600 hover:text-blue-900" href="{{ route('tasks.edit', $task) }}">
-                                        Изменить
+                                        {{ __('Изменить') }}
                                     </a>
                                 @endauth
                             </td>
