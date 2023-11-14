@@ -35,11 +35,9 @@ class TaskController extends Controller
         return view(
             'tasks.index',
             [
-                'task' => $task,
-                'tasks' => $tasks,
+                'task' => $task, 'tasks' => $tasks,
                 'taskStatuses' => $taskStatuses,
-                'users' => $users,
-                'filter' => $filter,
+                'users' => $users, 'filter' => $filter,
             ]
         );
     }
