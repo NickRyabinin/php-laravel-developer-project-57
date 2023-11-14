@@ -9,9 +9,9 @@ class HomePageTest extends TestCase
     /**
      * A 'Home' Page accessibility test.
      */
-    public function test_home_screen_can_be_rendered(): void
+    public function testHomeScreenCanBeRendered(): void
     {
         $response = $this->get(route('home'))->assertStatus(200);
-        $response = $this->get(route('home'))->assertSee('Менеджер задач');
+        $response = $this->get(route('home'))->assertSee(__('Менеджер задач'));
     }
 }

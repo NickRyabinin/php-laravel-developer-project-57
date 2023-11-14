@@ -31,32 +31,32 @@ class TaskTest extends TestCase
     /**
      * A 'tasks.index' Page accessibility test.
      */
-    public function test__tasks_index_screen_can_be_rendered(): void
+    public function testTasksIndexScreenCanBeRendered(): void
     {
         $response = $this->get(route('tasks.index'));
         $response->assertStatus(200);
-        $response->assertSee('Задачи');
+        $response->assertSee(__('Задачи'));
     }
 
     /**
      * A 'tasks.create' page accessibility test.
      */
-    public function test_tasks_create_screen_can_be_rendered_for_authenticated_user(): void
+    public function testTasksCreateScreenCanBeRenderedForAuthenticatedUser(): void
     {
         $response = $this->actingAs($this->user)->get(route('tasks.create'));
         $response->assertStatus(200);
-        $response->assertSee('Создать задачу');
+        $response->assertSee(__('Создать задачу'));
     }
 
-    public function test_tasks_create_screen_can_not_be_rendered_for_guest_user(): void
+    public function testTasksCreateScreenCanNotBeRenderedForGuestUser(): void
     {
-        $response = $this->get(route('tasks.create'))->assertStatus(403);
+        $this->get(route('tasks.create'))->assertStatus(403);
     }
 
     /**
      * A 'tasks.store' test.
      */
-    public function test_tasks_store_action_can_save_new_task_to_database(): void
+    public function testTasksStoreActionCanSaveNewTaskToDatabase(): void
     {
         $response = $this->actingAs($this->user)
             ->post(route('tasks.store'), $this->taskData);
@@ -69,35 +69,35 @@ class TaskTest extends TestCase
     /**
      * A 'tasks.show' page accessibility test.
      */
-    public function test_tasks_show_screen_can_be_rendered(): void
+    public function testTasksShowScreenCanBeRendered(): void
     {
         $this->task->save();
         $response = $this->get(route('tasks.show', ['task' => $this->task]));
         $response->assertStatus(200);
-        $response->assertSee('Просмотр задачи');
+        $response->assertSee(__('Просмотр задачи'));
     }
 
     /**
      * A 'tasks.edit' page accessibility test.
      */
-    public function test_tasks_edit_screen_can_be_rendered_for_authenticated_user(): void
+    public function testTasksEditScreenCanBeRenderedForAuthenticatedUser(): void
     {
         $this->task->save();
         $response = $this->actingAs($this->user)->get(route('tasks.edit', ['task' => $this->task]));
         $response->assertStatus(200);
-        $response->assertSee('Изменение задачи');
+        $response->assertSee(__('Изменение задачи'));
     }
 
-    public function test_tasks_edit_screen_can_not_be_rendered_for_guest_user(): void
+    public function testTasksEditScreenCanNotBeRenderedForGuestUser(): void
     {
         $this->task->save();
-        $response = $this->get(route('tasks.edit', ['task' => $this->task]))->assertStatus(403);
+        $this->get(route('tasks.edit', ['task' => $this->task]))->assertStatus(403);
     }
 
     /**
      * A 'tasks.update' test.
      */
-    public function test_tasks_update_action_can_patch_existing_task_in_database(): void
+    public function testTasksUpdateActionCanPatchExistingTaskInDatabase(): void
     {
         $this->task->save();
         $newTaskData = Task::factory()->make()->only(['name', 'description', 'status_id', 'assigned_to_id']);
@@ -112,7 +112,7 @@ class TaskTest extends TestCase
     /**
      * A 'tasks.destroy' test.
      */
-    public function test_tasks_destroy_action_can_delete_existing_task_in_database(): void
+    public function testTasksDestroyActionCanDeleteExistingTaskInDatabase(): void
     {
         $this->task->save();
         $response = $this->actingAs($this->user)

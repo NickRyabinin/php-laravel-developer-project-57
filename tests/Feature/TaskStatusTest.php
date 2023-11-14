@@ -24,24 +24,24 @@ class TaskStatusTest extends TestCase
     /**
      * A 'task_statuses.index' Page accessibility test.
      */
-    public function test__task_statuses_index_screen_can_be_rendered(): void
+    public function testTaskStatusesIndexScreenCanBeRendered(): void
     {
         $response = $this->get(route('task_statuses.index'));
         $response->assertStatus(200);
-        $response->assertSee('Статусы');
+        $response->assertSee(__('Статусы'));
     }
 
     /**
      * A 'task_statuses.create' page accessibility test.
      */
-    public function test_task_statuses_create_screen_can_be_rendered_for_authenticated_user(): void
+    public function testTaskStatusesCreateScreenCanBeRenderedForAuthenticatedUser(): void
     {
         $response = $this->actingAs($this->user)->get(route('task_statuses.create'));
         $response->assertStatus(200);
-        $response->assertSee('Создать статус');
+        $response->assertSee(__('Создать статус'));
     }
 
-    public function test_task_statuses_create_screen_can_not_be_rendered_for_guest_user(): void
+    public function testTaskStatusesCreateScreenCanNotBeRenderedForGuestUser(): void
     {
         $response = $this->get(route('task_statuses.create'))->assertStatus(403);
     }
@@ -49,7 +49,7 @@ class TaskStatusTest extends TestCase
     /**
      * A 'task_statuses.store' test.
      */
-    public function test_task_statuses_store_action_can_save_new_task_status_to_database(): void
+    public function testTaskStatusesStoreActionCanSaveNewTaskStatusToDatabase(): void
     {
         $response = $this->actingAs($this->user)
             ->post(route('task_statuses.store'), ['name' => $this->taskStatus->name]);
@@ -63,15 +63,16 @@ class TaskStatusTest extends TestCase
     /**
      * A 'task_statuses.edit' page accessibility test.
      */
-    public function test_task_statuses_edit_screen_can_be_rendered_for_authenticated_user(): void
+    public function testTaskStatusesEditScreenCanBeRenderedForAuthenticatedUser(): void
     {
         $this->taskStatus->save();
-        $response = $this->actingAs($this->user)->get(route('task_statuses.edit', ['task_status' => $this->taskStatus]));
+        $response = $this->actingAs($this->user)
+            ->get(route('task_statuses.edit', ['task_status' => $this->taskStatus]));
         $response->assertStatus(200);
-        $response->assertSee('Изменение статуса');
+        $response->assertSee(__('Изменение статуса'));
     }
 
-    public function test_task_statuses_edit_screen_can_not_be_rendered_for_guest_user(): void
+    public function testTaskStatusesEditScreenCanNotBeRenderedForGuestUser(): void
     {
         $this->taskStatus->save();
         $response = $this->get(route('task_statuses.edit', ['task_status' => $this->taskStatus]))->assertStatus(403);
@@ -80,7 +81,7 @@ class TaskStatusTest extends TestCase
     /**
      * A 'task_statuses.update' test.
      */
-    public function test_task_statuses_update_action_can_patch_existing_task_status_in_database(): void
+    public function testTaskStatusesUpdateActionCanPatchExistingTaskStatusInDatabase(): void
     {
         $this->taskStatus->save();
         $newName = TaskStatus::factory()->make()->name;
@@ -95,7 +96,7 @@ class TaskStatusTest extends TestCase
     /**
      * A 'task_statuses.destroy' test.
      */
-    public function test_task_statuses_destroy_action_can_delete_existing_task_status_in_database(): void
+    public function testTaskStatusesDestroyActionCanDeleteExistingTaskStatusInDatabase(): void
     {
         $this->taskStatus->save();
         $response = $this->actingAs($this->user)

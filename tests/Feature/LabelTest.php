@@ -24,32 +24,32 @@ class LabelTest extends TestCase
     /**
      * A 'labels.index' Page accessibility test.
      */
-    public function test_labels_index_screen_can_be_rendered(): void
+    public function testLabelsIndexScreenCanBeRendered(): void
     {
         $response = $this->get(route('labels.index'));
         $response->assertStatus(200);
-        $response->assertSee('Метки');
+        $response->assertSee(__('Метки'));
     }
 
     /**
      * A 'labels.create' page accessibility test.
      */
-    public function test_labels_create_screen_can_be_rendered_for_authenticated_user(): void
+    public function testLabelsCreateScreenCanBeRenderedForAuthenticatedUser(): void
     {
         $response = $this->actingAs($this->user)->get(route('labels.create'));
         $response->assertStatus(200);
-        $response->assertSee('Создать метку');
+        $response->assertSee(__('Создать метку'));
     }
 
-    public function test_labels_create_screen_can_not_be_rendered_for_guest_user(): void
+    public function testLabelsCreateScreenCanNotBeRenderedForGuestUser(): void
     {
-        $response = $this->get(route('labels.create'))->assertStatus(403);
+        $this->get(route('labels.create'))->assertStatus(403);
     }
 
     /**
      * A 'labels.store' test.
      */
-    public function test_labels_store_action_can_save_new_label_to_database(): void
+    public function testLabelsStoreActionCanSaveNewLabelToDatabase(): void
     {
         $response = $this->actingAs($this->user)
             ->post(route('labels.store'), ['name' => $this->label->name, 'description' => $this->label->description]);
@@ -62,24 +62,24 @@ class LabelTest extends TestCase
     /**
      * A 'labels.edit' page accessibility test.
      */
-    public function test_labels_edit_screen_can_be_rendered_for_authenticated_user(): void
+    public function testLabelsEditScreenCanBeRenderedForAuthenticatedUser(): void
     {
         $this->label->save();
         $response = $this->actingAs($this->user)->get(route('labels.edit', ['label' => $this->label]));
         $response->assertStatus(200);
-        $response->assertSee('Изменение метки');
+        $response->assertSee(__('Изменение метки'));
     }
 
-    public function test_labels_edit_screen_can_not_be_rendered_for_guest_user(): void
+    public function testLabelsEditScreenCanNotBeRenderedForGuestUser(): void
     {
         $this->label->save();
-        $response = $this->get(route('labels.edit', ['label' => $this->label]))->assertStatus(403);
+        $this->get(route('labels.edit', ['label' => $this->label]))->assertStatus(403);
     }
 
     /**
      * A 'labels.update' test.
      */
-    public function test_labels_update_action_can_patch_existing_label_in_database(): void
+    public function testLabelsUpdateActionCanPatchExistingLabelInDatabase(): void
     {
         $this->label->save();
         $newLabelData = Label::factory()->make()->only(['name', 'description']);
@@ -94,7 +94,7 @@ class LabelTest extends TestCase
     /**
      * A 'labels.destroy' test.
      */
-    public function test_labels_destroy_action_can_delete_existing_label_in_database(): void
+    public function testLabelsDestroyActionCanDeleteExistingLabelInDatabase(): void
     {
         $this->label->save();
         $response = $this->actingAs($this->user)
