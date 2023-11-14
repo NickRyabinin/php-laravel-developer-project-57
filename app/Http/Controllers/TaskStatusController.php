@@ -33,9 +33,14 @@ class TaskStatusController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'name' => 'required|unique:task_statuses|string|max:255',
-        ]);
+        $validated = $request->validate(
+            [
+                'name' => 'required|unique:task_statuses|string|max:255',
+            ],
+            [
+                'unique' => __('validation.unique_entity', ['entity' => 'Статус']),
+            ]
+        );
 
         $taskStatus = new TaskStatus();
         $taskStatus->fill($validated)->save();

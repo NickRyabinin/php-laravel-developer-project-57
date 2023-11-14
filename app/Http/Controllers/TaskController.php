@@ -70,12 +70,17 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'name' => 'required|unique:tasks|string|max:255',
-            'description' => 'max:10000',
-            'status_id' => 'required',
-            'assigned_to_id' => '',
-        ]);
+        $validated = $request->validate(
+            [
+                'name' => 'required|unique:tasks|string|max:255',
+                'description' => 'max:10000',
+                'status_id' => 'required',
+                'assigned_to_id' => '',
+            ],
+            [
+                'unique' => __('validation.unique_entity', ['entity' => 'Задача']),
+            ]
+        );
         $labels = $request->input('labels', []);
 
         $task = new Task();

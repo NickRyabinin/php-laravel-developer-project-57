@@ -33,10 +33,15 @@ class LabelController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'name' => 'required|unique:labels|string|max:255',
-            'description' => 'max:10000',
-        ]);
+        $validated = $request->validate(
+            [
+                'name' => 'required|unique:labels|string|max:255',
+                'description' => 'max:10000',
+            ],
+            [
+                'unique' => __('validation.unique_entity', ['entity' => 'Метка']),
+            ]
+        );
 
         $label = new Label();
         $label->fill($validated)->save();
