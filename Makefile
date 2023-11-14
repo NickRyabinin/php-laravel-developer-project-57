@@ -10,7 +10,7 @@ setup:
 	npm run build
 check:
 	composer validate
-	composer exec --verbose phpcs -- --standard=PSR12 routes app
+	composer exec --verbose phpcs -- --standard=PSR12 routes app tests
 	php artisan test
 start:
 	php artisan serve --host 0.0.0.0
