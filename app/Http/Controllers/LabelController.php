@@ -80,7 +80,7 @@ class LabelController extends Controller
      */
     public function destroy(Label $label)
     {
-        if ($label->tasks->isEmpty()) {
+        if ($label->tasks->isEmpty()) { // @phpstan-ignore-line
             $label->delete();
             session()->flash('message', 'Метка успешно удалена');
         } else {

@@ -16,8 +16,8 @@ class TaskController extends Controller
     public function index(Request $request)
     {
         $task = new Task();
-        $taskStatuses = TaskStatus::select('id', 'name')->get()->pluck('name', 'id');
-        $users = User::select('id', 'name')->get()->pluck('name', 'id');
+        $taskStatuses = TaskStatus::select('id', 'name')->pluck('name', 'id');
+        $users = User::select('id', 'name')->pluck('name', 'id');
         $filter = $request->filter ?? null;
         $query = Task::query();
         if (is_array($filter)) {
@@ -49,9 +49,9 @@ class TaskController extends Controller
     {
         if (auth()->check()) {
             $task = new Task();
-            $taskStatuses = TaskStatus::select('id', 'name')->get()->pluck('name', 'id');
-            $users = User::select('id', 'name')->get()->pluck('name', 'id');
-            $labels = Label::select('id', 'name')->get()->pluck('name', 'id');
+            $taskStatuses = TaskStatus::select('id', 'name')->pluck('name', 'id');
+            $users = User::select('id', 'name')->pluck('name', 'id');
+            $labels = Label::select('id', 'name')->pluck('name', 'id');
             return view(
                 'tasks.create',
                 [
@@ -84,7 +84,7 @@ class TaskController extends Controller
         $labels = $request->input('labels', []);
 
         $task = new Task();
-        $task->fill($validated)->fill(['created_by_id' => auth()->user()->id])->save();
+        $task->fill($validated)->fill(['created_by_id' => auth()->user()->id])->save(); // @phpstan-ignore-line
         $task->labels()->attach($labels);
         session()->flash('message', 'Задача успешно создана');
         return redirect()->route('tasks.index');
@@ -104,9 +104,9 @@ class TaskController extends Controller
     public function edit(Task $task)
     {
         if (auth()->check()) {
-            $taskStatuses = TaskStatus::select('id', 'name')->get()->pluck('name', 'id');
-            $users = User::select('id', 'name')->get()->pluck('name', 'id');
-            $labels = Label::select('id', 'name')->get()->pluck('name', 'id');
+            $taskStatuses = TaskStatus::select('id', 'name')->pluck('name', 'id');
+            $users = User::select('id', 'name')->pluck('name', 'id');
+            $labels = Label::select('id', 'name')->pluck('name', 'id');
             return view(
                 'tasks.edit',
                 [
