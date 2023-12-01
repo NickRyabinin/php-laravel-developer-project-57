@@ -1,5 +1,5 @@
 ### Hexlet tests and linter status:
-[![Actions Status](https://github.com/NickRyabinin/php-laravel-developer-project-57/workflows/hexlet-check/badge.svg)](https://github.com/NickRyabinin/php-laravel-developer-project-57/actions)
+[![hexlet-check](https://github.com/NickRyabinin/php-laravel-developer-project-57/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/NickRyabinin/php-laravel-developer-project-57/actions/workflows/hexlet-check.yml)
 [![project-check](https://github.com/NickRyabinin/php-laravel-developer-project-57/actions/workflows/project-check.yml/badge.svg)](https://github.com/NickRyabinin/php-laravel-developer-project-57/actions/workflows/project-check.yml)
 [![Maintainability](https://api.codeclimate.com/v1/badges/2c8550d312b58654b076/maintainability)](https://codeclimate.com/github/NickRyabinin/php-laravel-developer-project-57/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/2c8550d312b58654b076/test_coverage)](https://codeclimate.com/github/NickRyabinin/php-laravel-developer-project-57/test_coverage)
