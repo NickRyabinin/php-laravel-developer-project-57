@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('header')
-    __('Просмотр задачи'): {{ $task->name }}
+    {{ __('Просмотр задачи') }}: {{ $task->name }}
     <div class="inline">
         <a href="{{ route('tasks.edit', $task) }}">&#9881;</a>
     </div>
